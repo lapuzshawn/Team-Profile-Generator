@@ -4,12 +4,12 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 // Require JS lib 
-const Employee = require('./lib/Employee.js');
-const Engineer = require('./lib/Engineer.js');
-const Manager = require('./lib/Manager.js');
-const Intern = require('./lib/Intern.js');
+const Employee = require('./lib/Employee');
+const Engineer = require('./lib/Engineer');
+const Manager = require('./lib/Manager');
+const Intern = require('./lib/Intern');
 // Require gen-HTML.js 
-const htmlGEN = require('./lib/generateHTML.js');
+// const htmlGEN = require('./lib/generateHTML.js');
 
 
 //Prompts user for info
@@ -88,7 +88,17 @@ async function init() {
             keepPrompting = false;
         }
     };
+
     console.log('Generating HTML...');
+    const generateHTML = require('./generateHTML');
+    const generateTeamSection = require('./generateHTML');
+    // const html = generateHTML(employees);
+    const html = generateTeamSection(employees);
+  
+    fs.writeFile('team.html', html, (err) => {
+      if (err) throw err;
+      console.log('HTML file generated!');
+    });
 }
 
 
